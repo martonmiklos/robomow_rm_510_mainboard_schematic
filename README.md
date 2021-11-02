@@ -2,6 +2,8 @@
 
 I am repairing a Robomow RM-510 lawn mower which mowing motor does not works. Test fails with error 55.
 
+(In the case if you ran into the error 55 issue check the lid close checking Hall sensor...)
+
 The same board is present in the RM-200 (at least it is possible to set it in the service menu)
 
 The main focus of my work is the mowing motor driving circuit:
