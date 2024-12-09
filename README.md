@@ -1,6 +1,6 @@
-## Reverse engineered schematic parts for the Robomow RM-510 lawn mower 
+## Reverse engineered schematic in Kicad for PCG5000G1 mainboard used in the Robomow RM-400/City-110/RM-510 lawn mower 
 
-I am repairing a Robomow RM-510 lawn mower which mowing motor does not works. Test fails with error 55.
+I had been repairing a Robomow RM-510 lawn mower which mowing motor does not works. Test fails with error 55.
 
 *(In the case if you ran into the error 55 issue check the lid close checking Hall sensor...)*
 
@@ -9,6 +9,10 @@ The same board is present in the RM-200 (at least it is possible to set it in th
 The main focus of my work is the mowing motor driving circuit:
 
 ![SCH](https://raw.githubusercontent.com/martonmiklos/robomow_rm_510_mainboard_schematic/master/Robomow_PCG5000G1.png)
+
+Later on I started to dream about integrating the robot into [OpenMower](https://github.com/ClemensElflein/OpenMower).
+
+Due to the limitations of the factry firmware at some point I would like to write a replacement firmware for it in [Mowgli style](https://github.com/cloudn1ne/Mowgli).
 
 
 ### IR remote 
@@ -23,6 +27,8 @@ IR receiver type is unknown the following is present on it's back:
     C
 
 ```
+
+### General thoughts
 
 * MCU is clocked from a 16 MHz crystal
 * IR remote receiver IC OC output is connected to the MCU's P2.5 pin (INPC15)
@@ -39,14 +45,3 @@ IR receiver type is unknown the following is present on it's back:
     * timer_counter_1,2, ir_timeout_counter counts 0-1-2 (after 0ms - 655,35ms - 1310,7ms)
 
     
-IR protokoll:
-- Impulzus == élek között eltelt idő. Le és felszálló ág nem számít.
-- Preamble ami áll: több mint egy 11,1 ms-nél hosszabb impulzus
-- 36 bit
-    - ami 0,81 ms-nél hosszabb és 1,81-nél rövidebb az egyes bit lehet
-    - ami 0,81 ms-nél rövidebb az meg a 0-s bit lehet
-- a végén legalább 1 db 11,1 ms-nél hosszabb impulzus
-
-- A bejött adatot ellenőrzi:R1H = ((process_state * 4) - 16)
-- Az első 12 bit-nek 0x5A5-nek kell lennie
-- 4 bit felel meg 1 bitnek, ha 0x5 akkor a kimenet 0 ha 0xA akkor a kimeneti bit meg 1 
